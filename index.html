@@ -1,0 +1,349 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://distill.pub/template.v2.js"></script>
+  <style>body {
+  --gray-bg: hsl(0, 0%, 97%);
+  --gray-border: rgba(0, 0, 0, 0.1);
+  --border-radius: 5px;
+}
+d-title {
+  contain: unset;
+  padding-bottom: 0;
+}
+d-title h1, d-title p {
+  grid-column: page;
+}
+d-figure {
+  margin: 20px 0 40px;
+}
+d-slider {
+  width: 100%;
+}
+@media (max-width: 1280px) {
+  d-title br.conditional {
+    display: none;
+  }
+}
+#Teaser {
+  margin-top: 0;
+  margin-bottom: 0;
+  background: var(--gray-bg);
+  border-top: 1px solid var(--gray-border);
+  min-height: 100px;
+}
+figure.full-width {
+  grid-column: screen;
+}
+#AttributionSpatial {
+  background: var(--gray-bg);
+  padding: 20px 0;
+  border-top: 1px solid var(--gray-border);
+  border-bottom: 1px solid var(--gray-border);
+}
+#AttributionChannel, #ActivationGroups, #AttributionGroups {
+  background: var(--gray-bg);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid var(--gray-border);
+  border-bottom: 1px solid var(--gray-border);
+}
+#ActivationGroups {
+  display: block;
+}
+
+.attribution_list {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.attribution_list li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-column-gap: 10px;
+  margin-bottom: 0;
+  text-transform: capitalize;
+  width: 100%;
+}
+.attribution_list li span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.attribution_list .scent {
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.attribution_list .scent div {
+  left: 0;
+  background: #ccc;
+  height: 10px;
+}
+.red { color: #c82829; border-color: #c82829 }
+.orange { color: #f5871f; border-color: #f5871f }
+.yellow { color: #eab700; border-color: #eab700 }
+.green { color: #718c00; border-color: #718c00 }
+.aqua { color: #3e999f; border-color: #3e999f }
+.blue { color: #4271ae; border-color: #4271ae }
+.purple { color: #8959a8; border-color: #8959a8 }
+/* Heights for progressively loaded graphics */
+@media (min-width: 1000px) {
+  #Teaser {
+    /* min-height: 660px; */
+  }
+  #AttributionChannel {
+    min-height: 608px;
+  }
+  #AllActivationGrids {
+    min-height: 250px;
+  }
+  #AllActivationGridsMagnitude {
+    min-height: 250px;
+  }
+  #AttributionSpatial {
+    min-height: 500px;
+  }
+  #ActivationGroups {
+    min-height: 800px;
+  }
+  #AttributionGroups{
+    min-height: 722px;
+  }
+}
+
+
+
+.custom-select {
+  width: 125px;
+  height: 25px;
+  background-color: white;
+  border: 1px solid #666;
+}
+#select1 {
+  position: absolute;
+  top: 0px;
+}
+#select2 {
+  position: absolute;
+  top: 40px;
+}
+
+.subgrid {
+  grid-column: screen; 
+  display: grid; 
+  grid-template-columns: inherit;
+  grid-template-rows: inherit;
+  grid-column-gap: inherit;
+  grid-row-gap: inherit;
+}
+
+d-figure.base-grid {
+  grid-column: screen;
+  background: hsl(0, 0%, 97%);
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+d-figure {
+  margin-bottom: 1em;
+  position: relative;
+}
+
+d-figure > figure {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.shaded-figure {
+  background-color: hsl(0, 0%, 97%);
+  border-top: 1px solid hsla(0, 0%, 0%, 0.1);
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+  padding: 30px 0;
+}
+
+.pointer {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  top: 26px;
+  left: -48px;
+}
+
+.figure-element, .figure-line, .figure-path {
+  stroke: #666;
+  stroke-miterlimit: 10px;
+  stroke-width: 1.5px;
+}
+
+.figure-element {
+  fill: #fff;
+  fill-opacity: 0.8;
+}
+
+.figure-line {
+  fill: none;
+}
+
+.figure-path {
+  fill: #666;
+  stroke-width: 1px;
+}
+
+.figure-group {
+  fill: #f9f9f9;
+  stroke: #666;
+  stroke-width: 1.5px;
+  stroke-opacity: 0.6;
+  stroke-miterlimit: 10px;
+}
+
+.figure-faded {
+  opacity: 0.35;
+}
+
+.figure-box {
+  rx: 6px;
+  ry: 6px;
+}
+
+.figure-dashed {
+  stroke: #666;
+  stroke-width: 1.5px;
+  stroke-miterlimit: 10px;
+  stroke-dasharray: 5, 5;
+}
+
+.figure-text {
+  fill: #000;
+  opacity: 0.6;
+  font-size: 13px;
+}
+
+.figure-text-faded {
+  opacity: 0.35;
+}
+
+.figure-large-text {
+  font-size: 18px;
+}
+
+.subscript {
+  font-size: 8px;
+}
+
+.figure-film-generator {
+  /* stroke: #006064; */
+  /* fill: #80DEEA; */
+  
+  stroke: hsl(203, 65%, 70%);
+  fill: hsl(203, 65%, 85%);
+}
+
+.figure-film-generator-shaded {
+  /* stroke: #006064; */
+  /* fill: #00838F; */
+  
+  stroke: hsl(203, 15%, 85%);
+  fill: hsl(203, 15%, 95%);
+}
+
+.figure-filmed-network {
+  /* stroke: #BF360C; */
+  /* fill: #FFAB91; */
+  
+  stroke: hsl(11, 65%, 70%);
+  fill: rgb(242, 203, 194);
+}
+
+.todo {
+  color: red;
+}
+
+
+.tooltip {
+  position: absolute;
+  max-width: 300px;
+  max-height: 300px;
+  pointer-events: none;
+  transition: opacity;
+}
+
+.collapsible {
+  cursor: pointer;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 25px;
+  font-weight: 700;
+  background-color: white;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 0.5em;
+  margin: 0.2em;
+  margin-left: 0;
+  padding-left: 0;
+  transform: translateX(0px);
+  transition: 
+      color 0.1s ease-out,
+      transform 0.25s ease;
+}
+
+.collapsible:hover {
+  border-bottom: 1px solid inset;
+  color: rgba(0, 0, 0, 0.4);
+  transform: translateX(10px);
+  transition: 
+      transform 0.25s ease;
+}
+
+d-article .content {
+  display: none;
+  overflow: hidden;
+  background-color: none;
+}
+
+.expand-collapse-button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 700;
+  float: right;
+}
+
+#clevr-plot-svg {
+ width:440px;
+ height:400px
+}
+
+#style-transfer-plot-svg {
+ width:440px;
+ height:400px
+}
+</style>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+  <script src="svg-pan-zoom.js"></script>
+</head>
+
+<body>
+
+<d-title>
+  <h1>時富研究部</h1>
+  <div id="ActivationSource" style="grid-column: screen;"></div>
+</d-title>
+
+<d-article>
+  <figure class="l-body" id="radar-diagram">
+    <svg viewBox="0 0 640 560" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="clevr-plot" transform="translate(52, 0)"><circle cx="300" cy="260" r="260" stroke="#00FF00" stroke-width="2" fill="black"></circle><rect id="bbx" x="125" y="75" width="375" height="375" stroke="none" stroke-width="1" fill="none"></rect><circle cx="300" cy="260" r="200" stroke="#00FF00" stroke-width="1" fill="none"></circle><circle cx="300" cy="260" r="130" stroke="#00FF00" stroke-width="1" fill="none"></circle><circle cx="300" cy="260" r="65" stroke="#00FF00" stroke-width="1" fill="none"></circle><circle cx="300" cy="260" r="200" stroke="#00FF00" stroke-width="1" fill="none"></circle><circle cx="300" cy="260" r="130" stroke="#00FF00" stroke-width="1" fill="none"></circle><circle cx="300" cy="260" r="65" stroke="#00FF00" stroke-width="1" fill="none"></circle><line x1="300" y1="110" x2="300" y2="410" stroke="#00FF00" stroke-width="1"></line><line x1="40" y1="260" x2="560" y2="260" stroke="#00FF00" stroke-width="1"></line><line x1="165" y1="135" x2="435" y2="385" stroke="#00FF00" stroke-width="1"></line><line x1="165" y1="385" x2="435" y2="135" stroke="#00FF00" stroke-width="1"></line><path id="x-axis" d="M 0 260 L 600 260" class="figure-path" style="stroke-width: 1px; stroke: #666;"></path><text id="x-axis-label" x="300" y="440" dy="0.4em" text-anchor="middle" style="font-family: serif;" class="figure-text">γ</text><path d="M 300 110 L 300 410" id="y-axis" class="figure-path" style="stroke-width: 1px; stroke: #666;"></path><text id="y-axis-label" x="10" y="260" dy="1em" text-anchor="middle" style="font-family: serif;" class="figure-text">β</text></g><text x="0" y="500" dy="1em" class="figure-text" text-anchor="start"> 時富雷達分數 (1 to 9) </text><path d="M 0 520 L 125 520" stroke="#666" stroke-width="1" marker-end="url(#arrowhead)"></path><g transform="translate(6, 545)" id="clevr-legend"></g><image x="150" y="500" height="27" width="27" xlink:href="images/pointer.svg"></image><rect x="510" y="525" width="125" height="25" stroke="#666" stroke-width="1" fill="none"></rect><rect x="510" y="485" width="125" height="25" stroke="#666" stroke-width="1" fill="none"></rect><foreignObject x="510" y="485" width="125" height="65"><div xmlns="http://www.w3.org/1999/xhtml"><select id="select1" class="custom-select"></select><select id="select2" class="custom-select"></select></div></foreignObject><defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7"></polygon></marker></defs></svg>
+  </figure>
+</d-article>
+<script type="text/javascript" src="index.bundle.js"></script></body>

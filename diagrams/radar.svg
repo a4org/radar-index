@@ -1,0 +1,51 @@
+<svg viewBox="0 0 640 560" preserveAspectRatio="xMidYMid meet" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="clevr-plot" transform="translate(52, 0)">
+    <circle cx="300" cy="260" r="260" stroke="#00FF00" stroke-width="2" fill="black"/>
+
+    <rect id="bbx" x="125" y="75" width="375" height="375" stroke="none" stroke-width="1" fill="none"/>
+
+    <circle cx="300" cy="260" r="200" stroke="#00FF00" stroke-width="1" fill="none"/>
+    <circle cx="300" cy="260" r="130" stroke="#00FF00" stroke-width="1" fill="none"/>
+    <circle cx="300" cy="260" r="65" stroke="#00FF00" stroke-width="1" fill="none"/>
+    <circle cx="300" cy="260" r="200" stroke="#00FF00" stroke-width="1" fill="none"/>
+    <circle cx="300" cy="260" r="130" stroke="#00FF00" stroke-width="1" fill="none"/>
+    <circle cx="300" cy="260" r="65" stroke="#00FF00" stroke-width="1" fill="none"/>
+    
+    <line x1="300" y1="110" x2="300" y2="410" stroke="#00FF00" stroke-width="1"/>
+    <line x1="40" y1="260" x2="560" y2="260" stroke="#00FF00" stroke-width="1"/>
+    
+    <line x1="165" y1="135" x2="435" y2="385" stroke="#00FF00" stroke-width="1"/>
+    <line x1="165" y1="385" x2="435" y2="135" stroke="#00FF00" stroke-width="1"/>
+
+    <path id="x-axis" d="M 0 260 L 600 260" class="figure-path" style="stroke-width: 1px; stroke: #666;"/>
+    <text id="x-axis-label" x="300" y="440" dy="0.4em" text-anchor="middle" style="font-family: serif;" class="figure-text">γ</text>
+    <path d="M 300 110 L 300 410" id="y-axis" class="figure-path" style="stroke-width: 1px; stroke: #666;"/>
+    <text id="y-axis-label" x="10" y="260" dy="1em" text-anchor="middle" style="font-family: serif;" class="figure-text">β</text>
+  </g>
+
+<text x="0" y="500" dy="1em" class="figure-text" text-anchor="start">
+  時富雷達分數 (1 to 9)
+</text>
+<!-- Thinner horizontal arrow line between figure-text and clevr-legend -->
+<path d="M 0 520 L 125 520" stroke="#666" stroke-width="1" marker-end="url(#arrowhead)"/>
+<g transform="translate(6, 545)" id="clevr-legend"></g>
+<image x="150" y="500" height="27" width="27" xlink:href="images/pointer.svg"/>
+
+<rect x="510" y="525" width="125" height="25" stroke="#666" stroke-width="1" fill="none" />
+<rect x="510" y="485" width="125" height="25" stroke="#666" stroke-width="1" fill="none" />
+
+<foreignObject x="510" y="485" width="125" height="65">
+  <div xmlns="http://www.w3.org/1999/xhtml">
+    <select id="select1" class="custom-select"></select>
+    <select id="select2" class="custom-select"></select>
+  </div>
+</foreignObject>
+
+<!-- Arrowhead definition -->
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" />
+  </marker>
+</defs>
+
+</svg>
