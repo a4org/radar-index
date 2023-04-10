@@ -310,7 +310,7 @@ String.prototype.capitalize = function() {
     return this.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
 };
 
-function figure3(csvFileName, targetDivId, headers, colors, base_image_name) {
+function figure3(csvFileName, targetDivId, headers, colors, base_image_name, dirname) {
     var margin = ({
         top: 30,
         right: 30,
@@ -348,6 +348,7 @@ function figure3(csvFileName, targetDivId, headers, colors, base_image_name) {
             x: index * (indicator_image_size + indicator_image_padding),
             y: 0,
             id: header,
+            idx: index,
             opacity: index === 0 ? 1.0 : 0.2
         };
     });
@@ -565,7 +566,7 @@ function mousemove() {
         .attr('width', indicator_image_size)
         .attr('height', indicator_image_size)
         .attr('xlink:href', function(d) {
-            return 'images/jpm.webp';
+            return 'images/' + dirname + '/' + d.idx + '.png';
         })
         .attr('id', function(d) { return d.id; })
         .attr('x', function(d) { return d.x; })
@@ -607,5 +608,5 @@ const color2 = {
 var base_image_name1 = '美國國債孳息曲線(10-2年)';
 var base_image_name2 = '美國國債孳息-2年';
 
-figure3("data/macroindicators.csv", "#bond", header1, color1, base_image_name1);
-figure3("data/bonds.csv", "#bond2", header2, color2, base_image_name2);
+figure3("data/macroindicators.csv", "#bond", header1, color1, base_image_name1, "bond1");
+figure3("data/bonds.csv", "#bond2", header2, color2, base_image_name2, "bond2");
