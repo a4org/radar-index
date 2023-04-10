@@ -1,0 +1,130 @@
+:root {
+  --gray-bg: hsl(0, 0%, 97%);
+  --gray-border: hsla(0, 0%, 0%, 0.1);
+  --gray: rgba(0, 0, 0, 0.6);
+  --border-radius: 5px;
+  --orange: hsl(24, 100%, 50%);
+  --distill-blue: hsl(200, 50%, 25%);
+  --blue: #337699;
+  --green: #3db867;
+}
+
+.subgrid {
+  grid-column: screen;
+  display: grid;
+  grid-template-columns: inherit;
+  grid-template-rows: inherit;
+  grid-column-gap: inherit;
+  grid-row-gap: inherit;
+}
+
+d-figure.base-grid {
+  grid-column: screen;
+  background: hsl(0, 0%, 97%);
+  padding: 20px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+#chart > svg > g.slider > line.track {
+  fill: #FF5B4D;
+  background-color: #FF5B4D;
+}
+
+.slider .track {
+  stroke: #FF5B4D;
+  background-color: #FF5B4D;
+}
+
+.slider .track-overlay {
+  stroke: #FFA500;
+}
+.slider .track-inset {
+  stroke-width: 10px;
+  stroke-opacity: 0.3;
+}
+.slider .track-overlay {
+  pointer-events: stroke;
+  stroke-width: 50px;
+  cursor: crosshair;
+}
+.slider .handle {
+  fill: #FF5B4D;
+}
+.slider .ticks {
+  font-size: 10px;
+}
+.slider .ticks text {
+  text-anchor: middle;
+}
+
+.slider .track {
+  fill: none;
+}
+
+.slider .track-inset {
+  fill: none;
+}
+
+.slider .track-overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+
+.slider .ticks text {
+  font-size: 10px;
+  fill: transparent;
+}
+
+.slider line {
+  stroke: none;
+}
+
+#chart > svg {
+  background-color: transparent;
+}
+
+.axis line,
+.axis path {
+  stroke: black;
+}
+
+#line_chart > g.axis.axis--x > path {
+  stroke: black;
+}
+
+#line_chart > g.axis.axis--y > path {
+  stroke: black;
+}
+
+#chart > svg > g.slider {
+  fill: transparent;
+  background-color: transparent;
+}
+
+.equity-container {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.equity-container input[type='checkbox'] {
+  margin-right: 5px;
+}
+
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding: 4px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0;
+    border-radius: 8px;
+    pointer-events: none;
+    z-index: 10;
+}
+
