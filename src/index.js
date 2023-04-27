@@ -25,7 +25,7 @@ function monthToChinese(month) {
 
 function draw_chart(data, labels, containerId, selectId) {
     var equities = ["深證成指", "滬深300", "恆生指數", "美國標普500", "美國納指", "上證綜指", "國企指數", "歐洲斯托克50", "恆生科技指數"];
-    var commodities = ["BTC 指數", "WTI 原油", "Brent 布蘭特原油", "金(每百oz)", "銅(每磅)", "天然氣 (MMBtu)"];
+    var commodities = ["BTC 指數", "Brent 布蘭特原油", "金(每百oz)", "銅(每磅)", "天然氣 (MMBtu)"];
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right;
 
@@ -82,7 +82,7 @@ function draw_chart(data, labels, containerId, selectId) {
             // Update tickFormat to display the month in Chinese
             const date = new Date(d);
             const month = date.toLocaleString('en-us', { month: 'long' });
-            return `${monthToChinese(month)} ${date.getFullYear()}`;
+            return `${monthToChinese(month)}`;
           })
       );
 
@@ -288,13 +288,12 @@ var equities = ["深證成指", "滬深300", "恆生指數", "美國標普500", 
     console.error("Error loading the data:", error);
   });
 
-var commodities = ["BTC 指數", "WTI 原油", "Brent 布蘭特原油", "金(每百oz)", "銅(每磅)", "天然氣 (MMBtu)"];
+var commodities = ["BTC 指數", "Brent 布蘭特原油", "金(每百oz)", "銅(每磅)", "天然氣 (MMBtu)"];
 
  d3.csv("data/pcommodities.csv", function(d) {
     d.Date = +d.Date;
     d.StrDate = d3.timeParse("%m/%d/%Y")(d.StrDate);
     d["BTC 指數"] = +d["BTC 指數"];
-    d["WTI 原油"] = +d["WTI 原油"];
     d["Brent 布蘭特原油"] = +d["Brent 布蘭特原油"];
     d["金(每百oz)"] = +d["金(每百oz)"];
     d["銅(每磅)"] = +d["銅(每磅)"];

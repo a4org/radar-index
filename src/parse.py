@@ -1,8 +1,9 @@
 import csv
+import os
 import math
 
 # Read the input file
-with open("commodities.csv", "r") as f:
+with open("commodities.csv", "r", encoding="utf-8") as f:
     csv_reader = csv.reader(f)
     data = [row for row in csv_reader]
 
@@ -34,6 +35,6 @@ for i, row in enumerate(data):
     processed_data.append([date_num, row[0]] + float_row)
 
 # Write the processed data to a new file
-with open("pcommodities.csv", "w", newline='') as f:
+with open(os.path.join('data', "pcommodities.csv"), "w", newline='', encoding="utf-8") as f:
     csv_writer = csv.writer(f)
     csv_writer.writerows(processed_data)
