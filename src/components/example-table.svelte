@@ -149,17 +149,18 @@
         <table id="example-table">
             <thead>
                 <tr>
-                <th id="title-col" scope="col" on:click={() => {lastSortKey = sortKey; sortKey = "title"; sort()}}>每日新聞 <i class="material-icons">{sortKey === "title" ? sortIcon : ""}</i></th>
                 <th class="hide-column" scope="col" on:click={() => {lastSortKey = sortKey; sortKey = "tags"; sort()}}>分類 <i class="material-icons">{sortKey === "tags" ? sortIcon : ""}</i></th>
+                <th id="title-col" scope="col" on:click={() => {lastSortKey = sortKey; sortKey = "title"; sort()}}>每日新聞 <i class="material-icons">{sortKey === "title" ? sortIcon : ""}</i></th>
                 </tr>
             </thead>
             <tbody>
                 {#each examples as example}
                     <tr>
-                        <td style="text-transform: capitalize">
-                            <a href={example.entryTags.url}>{example.entryTags.title}</a>
-                        </td>
                         <td class="hide-column">{example.entryTags.tags}</td>
+                        <td style="text-transform: capitalize">
+                            <!-- <a href={example.entryTags.url}>{example.entryTags.title}</a> -->
+                            <a>{example.entryTags.title}</a>
+                        </td>
                     </tr>
                 {/each}
             </tbody>

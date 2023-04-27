@@ -410,19 +410,32 @@ function figure3(csvFileName, targetDivId, headers, colors, base_image_name, dir
         var x = d3.scaleTime()
             .range([0, chart_width])
             .domain(d3.extent(current_data, function(d) { return new Date(d.Date); }));
+        if (targetDivId == "#bond") {
+          // based on only the current data
+          var yMin = d3.min(current_data, function(d) {
+              return +d[[base_image_name]];
+          });
 
-        // Calculate the domain for the y scale dynamically based on headers
-        var yMin = d3.min(current_data, function(d) {
-            return Math.min.apply(null, headers.map(function(header) {
-                return +d[header];
-            }));
-        });
+          var yMax = d3.max(current_data, function(d) {
+              return +d[[base_image_name]];
+          });
+        } else {
+          // Calculate the domain for the y scale dynamically based on headers
+          var yMin = d3.min(current_data, function(d) {
+              return Math.min.apply(null, headers.map(function(header) {
+                  return +d[header];
+              }));
+          });
 
-        var yMax = d3.max(current_data, function(d) {
-            return Math.max.apply(null, headers.map(function(header) {
-                return +d[header];
-            }));
-        });
+          var yMax = d3.max(current_data, function(d) {
+              return Math.max.apply(null, headers.map(function(header) {
+                  return +d[header];
+              }));
+          });
+        }
+
+        yMin = yMin * 0.95;
+        yMax = yMax * 1.05;
 
         var y = d3.scaleLinear()
         .range([chart_height, 0])
@@ -441,10 +454,17 @@ function figure3(csvFileName, targetDivId, headers, colors, base_image_name, dir
                 .attr('id', 'chart-x-axis')
                 .call(d3.axisBottom(x).ticks(d3.timeMonth.every(1)).tickFormat(d3.timeFormat('%m/%Y')));
             
-            var yaxis = chart_group.append('g')
-                .attr('class', 'axis axis--y')
-                .attr('id', 'chart-y-axis')
-                .call(d3.axisLeft(y));
+            if (targetDivId == "#bond2") {
+              var yaxis = chart_group.append('g')
+                  .attr('class', 'axis axis--y')
+                  .attr('id', 'chart-y-axis')
+                  .call(d3.axisLeft(y).tickFormat(function(d) { return d + '%'; }));
+            } else {
+              var yaxis = chart_group.append('g')
+                  .attr('class', 'axis axis--y')
+                  .attr('id', 'chart-y-axis')
+                  .call(d3.axisLeft(y));
+            }
             
             chart_group.append('g')
                 .attr('id', 'grid_markings_horz')    

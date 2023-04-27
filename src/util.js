@@ -1,14 +1,12 @@
 import bibtexParse from 'bibtex-parse-js';
-import bibString from './data/bibliography.bib';
+import bibString from './data/news.bib';
 
 export function getBibtexEntries() {
 
   let bibliography = bibtexParse.toJSON(bibString);
 
   // filter out all bibtex entries except interactive article examples
-  let examples = bibliography.filter(function (bibEntry) {
-    return bibEntry.entryTags.howpublished === "web";
-  });
+  let examples = bibliography;
 
   examples.forEach(citation => {
     // coerce tag string into array of strings
