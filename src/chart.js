@@ -1,6 +1,9 @@
 function draw_chart(data, labels, containerId, selectId) {
-    var equities = ["深證成指", "滬深300", "恆生指數", "美國標普500", "美國納指", "上證綜指", "國企指數", "歐洲斯托克50", "恆生科技指數"];
-    var commodities = ["BTC 指數", "WTI 原油", "Brent 布蘭特原油", "金(每百oz)", "銅(每磅)", "天然氣 (MMBtu)"];
+  var equities = ["深證成指", "滬深300", "恆生指數", "美國標普500", "美國納指", "上證綜指", "國企指數", "歐洲斯托克50", "恆生科技指數"];
+  commodities = ["BTC 指數", "布蘭特原油", "金", "銅", "天然氣"];
+
+  d.StrDate = d3.timeParse("%m/%d/%Y")(d.Date);
+  
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right;
 
@@ -45,21 +48,22 @@ function draw_chart(data, labels, containerId, selectId) {
     .x(function(d) { return x(d.StrDate); })
     .y(function(d) { return y(d.percentage); });
 
-    var numXTicks = 20; // Adjust this value to change the number of x-axis labels
-
     line_chart.append("g")
       .attr("class", "axis axis--x")
       .attr("transform", "translate(0," + height + ")")
-      .call(
-        d3.axisBottom(x)
-        .ticks(numXTicks)
-        .tickFormat(d => {
-          // Update tickFormat to display the month in Chinese
-          const date = new Date(d);
-          const month = date.toLocaleString('en-us', { month: 'long' });
-          return `${monthToChinese(month)} ${date.getFullYear()}`;
-        })
-    );
+      .call(d3.axisBottom(x).tickSizeOuter(0));
+    )
+
+    .selectAll("text")  
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", ".15em")
+      .attr("transform", "rotate(-65)");
+    .selectAll("text")  
+      .style("text-anchor", "end")
+      .attr("dx", "-.8em")
+      .attr("dy", ".15em")
+      .attr("transform", "rotate(-65)");
 
     line_chart.append("g")
       .attr("class", "axis axis--y")
@@ -165,7 +169,7 @@ function draw_chart(data, labels, containerId, selectId) {
         "November": "十一月",
         "December": "十二月"
       };
-      return chineseMonths[month] || month;
+      return chineseMonths[month];
     }
 
     function updateChart(newDate, labels) {
@@ -247,45 +251,36 @@ function draw_chart(data, labels, containerId, selectId) {
     createSelectBoxAndLegend(containerId, selectId);
   }
 
-
 var equities = ["深證成指", "滬深300", "恆生指數", "美國標普500", "美國納指", "上證綜指", "國企指數", "歐洲斯托克50", "恆生科技指數"];
 
- d3.csv("data/pequity.csv", function(d) {
-    d.Date = +d.Date;
-    d.StrDate = d3.timeParse("%m/%d/%Y")(d.StrDate);
-    d.深證成指 = +d.深證成指;
-    d.滬深300 = +d.滬深300;
-    d.恆生指數 = +d.恆生指數;
-    d.美國標普500 = +d.美國標普500;
-    d.美國納指 = +d.美國納指;
-    d.上證綜指 = +d.上證綜指;
-    d.國企指數 = +d.國企指數;
-    d.歐洲斯托克50 = +d.歐洲斯托克50;
-    d.恆生科技指數 = +d.恆生科技指數;
-    return d;
-  }).then(function(data) {
-    console.log("chart");
+d3.csv("data/pequity.csv", function(d) {
+  d.StrDate = d3.timeParse("%m/%d/%Y")(d.Date);
+
+  equities.forEach(function(equity) {
+    d[equity] = parseFloat(d[equity].replace('%', '')) / 100.0;
+    console.log(d[equity]);
+  });
+
+  return d;
+}).then(function(data) {
     draw_chart(data, equities, "#chart", "#selectBoxContainer");
   }).catch(function(error) {
     console.error("Error loading the data:", error);
   });
 
+var commodities = ["BTC 指數", "布蘭特原油", "金", "銅", "天然氣)"];
 
-var commodities = ["BTC 指數", "WTI 原油", "Brent 布蘭特原油", "金(每百oz)", "銅(每磅)", "天然氣 (MMBtu)"];
+d3.csv("data/pcommodities.csv", function(d) {
+  d.StrDate = d3.timeParse("%m/%d/%Y")(d.Date);
 
- d3.csv("data/pcommodities.csv", function(d) {
-    d.Date = +d.Date;
-    d.StrDate = d3.timeParse("%m/%d/%Y")(d.StrDate);
-    d["BTC 指數"] = +d["BTC 指數"];
-    d["WTI 原油"] = +d["WTI 原油"];
-    d["Brent 布蘭特原油"] = +d["Brent 布蘭特原油"];
-    d["金(每百oz)"] = +d["金(每百oz)"];
-    d["銅(每磅)"] = +d["銅(每磅)"];
-    d["天然氣 (MMBtu)"] = +d["天然氣 (MMBtu)"];
-    return d;
-  }).then(function(data) {
-    console.log("chart2");
+  commodities.forEach(function(commodity) {
+    d[commodity] = parseFloat(d[commodity].replace('%', '')) / 100.0;
+    console.log(d[commodity]);
+  });
+
+  return d;
+}).then(function(data) {
     draw_chart(data, commodities, "#chart2", "#selectBoxContainer2");
   }).catch(function(error) {
     console.error("Error loading the data:", error);
-  });
+});
