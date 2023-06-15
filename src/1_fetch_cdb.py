@@ -3,7 +3,6 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 import pandas as pd
 
-
 # Set up API credentials
 KEY_FILE = 'cash-radar-credentials.json'
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets','https://www.googleapis.com/auth/drive','https://www.googleapis.com/auth/drive.file']
@@ -16,6 +15,9 @@ drive_api = build('drive', 'v3', credentials=creds)
 
 COMMENT = '1_RZFcRl_Ks2D3bF4m4302299Bcxh1HVHisdbfjibxOU' # ID of the CDB0.00 Daily Commentaries
 COMMODITIES = '1rUvfpKxOBLne4xx_eXfgoQ5j5uPFeO4uU4LIz5i2sg0' # ID of the CDB0.02 Commodities
+BONDS = '1NjelpTxhhT_gEmViK2FopjCil4EbG9ANcOc5jLW1slU' # ID of the CDB0.03 Bonds
+MACRO = '1fQ93gz3tpiKOmNsO-XL9n-TGx_xNY2ZVBm5uKVAP75g' # ID of the CDB0.04 Macro
+
 
 def download_sheet(download_name, sheet_id, output_folder, sheet_name):
     result = sheets_api.spreadsheets().values().get(spreadsheetId=sheet_id, range=sheet_name).execute()
@@ -30,3 +32,5 @@ def download_sheet(download_name, sheet_id, output_folder, sheet_name):
 if __name__ == '__main__':
     download_sheet("commentaries", COMMENT, '.', "sheet1")
     download_sheet("commodities", COMMODITIES, '.', "PctChg-Commodities")
+    download_sheet("bonds", BONDS, 'data', "PctChg-Bonds")
+    download_sheet("macroindicators", MACRO, 'data', "PctChg-Bonds")

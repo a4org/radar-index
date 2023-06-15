@@ -1,0 +1,69 @@
+
+> radar-index@1.0.0 build
+> webpack
+
+assets by path images/ 261 KiB
+  assets by path images/bond2/ 118 KiB 9 assets
+  assets by path images/*.svg 52.9 KiB 3 assets
+  assets by path images/bond1/ 23.7 KiB 3 assets
+  assets by path images/*.png 41.1 KiB 2 assets
+  asset images/jpm.webp 17.7 KiB [compared for emit] [from: src/images/jpm.webp] [copied]
+  asset images/.DS_Store 8 KiB [compared for emit] [from: src/images/.DS_Store] [copied]
+assets by path data/ 68.5 KiB
+  assets by path data/*.csv 48.2 KiB 4 assets
+  assets by path data/*.bib 14.2 KiB
+    asset data/news.bib 7.27 KiB [compared for emit] [from: src/data/news.bib] [copied]
+    asset data/bibliography.bib 6.98 KiB [compared for emit] [from: src/data/bibliography.bib] [copied]
+  asset data/.DS_Store 6 KiB [compared for emit] [from: src/data/.DS_Store] [copied]
+asset index.bundle.js 181 KiB [compared for emit] (name: index)
+asset index.html 31.2 KiB [compared for emit]
+runtime modules 972 bytes 5 modules
+cacheable modules 143 KiB
+  modules by path ./node_modules/ 101 KiB
+    modules by path ./node_modules/style-loader/dist/runtime/*.js 5.84 KiB 6 modules
+    modules by path ./node_modules/css-loader/dist/runtime/*.js 2.31 KiB 2 modules
+    ./node_modules/svelte/internal/index.mjs 81.2 KiB [built] [code generated]
+    ./node_modules/bibtex-parse-js/bibtexParse.js 11.3 KiB [built] [code generated]
+  modules by path ./src/ 41.9 KiB
+    modules by path ./src/*.js 23.1 KiB 2 modules
+    modules by path ./src/*.css 3.63 KiB 2 modules
+    ./src/components/example-table.svelte 7.7 KiB [built] [code generated] [3 warnings]
+    ./src/data/news.bib 7.53 KiB [built] [code generated]
+
+WARNING in ./src/components/example-table.svelte
+Module Warning (from ./node_modules/svelte-loader/index.js):
+A11y: <a> element should have an href attribute (162:28)
+160:                         <td style="text-transform: capitalize">
+161:                             <!-- <a href={example.entryTags.url}>{example.entryTags.title}</a> -->
+162:                             <a>{example.entryTags.title}</a>
+                                 ^
+163:                         </td>
+164:                     </tr>
+ @ ./src/index.js 1:0-61 4:25-37
+
+WARNING in ./src/components/example-table.svelte
+Module Warning (from ./node_modules/svelte-loader/index.js):
+Unused CSS selector ".break" (109:4)
+107:     } */
+108: 
+109:     .break { display: none; }
+         ^
+110:     .hide-column { 
+111:       display: auto; 
+ @ ./src/index.js 1:0-61 4:25-37
+
+WARNING in ./src/components/example-table.svelte
+Module Warning (from ./node_modules/svelte-loader/index.js):
+Unused CSS selector ".break" (127:8)
+125:         }
+126: 
+127:         .break { display: inline-block; }
+             ^
+128:         .hide-column { display: none; }
+129:     }
+ @ ./src/index.js 1:0-61 4:25-37
+
+3 warnings have detailed information that is not shown.
+Use 'stats.errorDetails: true' resp. '--stats-error-details' to show it.
+
+webpack 5.78.0 compiled with 3 warnings in 321 ms
