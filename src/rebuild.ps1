@@ -5,7 +5,6 @@ py .\1_fetch_cdb.py
 py .\2_gen_news.py
 Set-Location -Path "D:\AMT Research\Radar\radar-index"
 npm run build
-mkdir "D:\AMT Research\nginx\html\news"
 $source = "D:\AMT Research\Radar\radar-index\public"
 $destination = "D:\AMT Research\nginx\html\news"
 
