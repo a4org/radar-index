@@ -3,7 +3,7 @@
     import { getBibtexEntries } from "../util.js";
 
     let sortAsc = true;
-    let sortKey = "title"
+    let sortKey = "tags"
     let lastSortKey = ""
 
     let examples = getBibtexEntries()
